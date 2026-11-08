@@ -1,4 +1,4 @@
-# Wiki-owned integration: Backend owns Python types; Frontend owns ESLint.
+# Wiki-owned integration: Backend owns Python types; Frontend owns TypeScript.
 name: Standards
 
 on:
