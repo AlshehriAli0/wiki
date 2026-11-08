@@ -59,14 +59,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Prettier check
+      - name: Oxfmt check
         run: npm run format:check
 
       - name: TypeScript check
         run: npm run typecheck
 
-      - name: ESLint with exact baseline
-        run: npm run lint:baseline-check
+      - name: Install uv
+        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          version-file: backend/uv.toml
+      - name: Standards TypeScript gate
+        run: uvx --no-config --isolated --python 3.15 --from code-standards==9.1.1 code-standards --root .. check --trust-repository-code frontend
 
       - name: Syncpack dependency consistency
         run: npm run check:dependencies
